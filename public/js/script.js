@@ -11,7 +11,13 @@ document.querySelector(".shorten").addEventListener('click', function () {
 
         return randomString;
     }
-
+    function ensureHttps(url) {
+        if (!/^https?:\/\//i.test(url)) {
+            // 'https://' is not present, add it to the URL
+            url = 'https://' + url;
+        }
+        return url;
+    }
     fetch('/shorten', {
         method: 'POST',
         headers: {
@@ -19,7 +25,7 @@ document.querySelector(".shorten").addEventListener('click', function () {
             'X-CSRF-TOKEN': csrfToken, // Include CSRF token for web routes
         },
         body: JSON.stringify({
-            original_url: url,
+            original_url: ensureHttps(url),
             short_code: generateRandomString(),
         }),
     })
@@ -27,7 +33,7 @@ document.querySelector(".shorten").addEventListener('click', function () {
         .then(data => {
             toastr.success("Short url gemaakt!!", "Gelukt!");
             console.log(data);
-            document.getElementById('shortened').value = "http://localhost:8000/" + data.data.short_code
+            document.getElementById('shortened').value = window.location.href + data.data.short_code
         })
         .catch(error => {
             toastr.error("Er is iets fout gegaan.", "Fout!");
