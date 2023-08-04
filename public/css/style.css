@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+
+:root {
+    --font-size: 1.2rem;
+    --color: rgb(200, 200, 200);
+    --color-secondary: rgb(255, 255, 255);
+    --background-color: rgb(50, 50, 50);
+    --background-color-secondary: rgb(60, 60, 60);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 3rem;
+    box-sizing: border-box;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background: var(--background-color);
+    color: var(--color);
+    font-family: "Open Sans", sans-serif;
+
+}
+
+div {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    width: 20rem;
+    height: 2rem;
+    padding: 1.5rem .5rem;
+    font-size: var(--font-size);
+    border-radius: 0.4rem;
+    border: 1px solid var(--color);
+    background: var(--background-color);
+    color: inherit;
+}
+
+.input {
+    margin-bottom: 2rem;
+    ;
+}
+
+label {
+    position: absolute;
+    left: .6rem;
+    font-size: var(--font-size);
+    transform-origin: left center;
+    background: white;
+    pointer-events: none;
+    background: transparent;
+    transition: transform 0.2s ease-out;
+    color: rgba(240, 240, 240, 0.4);
+    border-radius: 0.2rem;
+    margin-bottom: 0;
+}
+
+:is(input:focus, input:valid) {
+    outline: none;
+    border-color: var(--color-secondary);
+    background: var(--background-color-secondary);
+}
+
+:is(input:focus, input:valid)+label {
+    transition: 0.2s ease-out;
+    transform: translateY(-2.5rem) scale(0.8);
+    color: #fff;
+    background: transparent;
+}
+
+.card {
+    height: 375px;
+    width: 400px;
+    padding-top: 5rem;
+    background-color: #222;
+    box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px 0px rgba(0, 0, 0, 0.75);
+}
